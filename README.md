@@ -86,7 +86,7 @@ Imbalanced data was handled using **SMOTE**.
   - Trying advanced imbalance techniques like **ADASYN**  
   - Using ensemble methods or cost-sensitive learning  
 
-> ⚠️ **Conclusion:** This model should not be used as the sole decision tool for predicting student performance, especially for students at risk of failing.
+> ⚠️ **Conclusion:** This model should not be used as the decision tool for predicting student performance, especially for students at risk of failing.
 
 
 ## Usage
