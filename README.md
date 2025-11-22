@@ -76,6 +76,19 @@ Imbalanced data was handled using **SMOTE**.
 
 ---
 
+## Limitations
+
+- The dataset is **highly imbalanced**: far more students pass than fail.  
+- Even after SMOTE, some models (like Logistic Regression and KNN) still have low recall for the failing students.  
+- Accuracy can be misleading because predicting all students as passing gives high accuracy but poor detection of failing students.  
+- Further improvement may require:
+  - Collecting more data for the failing class  
+  - Trying advanced imbalance techniques like **ADASYN**  
+  - Using ensemble methods or cost-sensitive learning  
+
+> ⚠️ **Conclusion:** This model should not be used as the sole decision tool for predicting student performance, especially for students at risk of failing.
+
+
 ## Usage
 
 ```
