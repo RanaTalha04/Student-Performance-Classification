@@ -52,6 +52,42 @@ After preprocessing and feature selection, the following key features are used:
 
 ---
 
+
+## Pipeline
+
+```text
+Raw Dataset
+     │
+     ▼
+Preprocessing (handle missing, yes/no → 1/0)
+     │
+     ▼
+Feature Engineering (one-hot encode, create total_alcohol, study_fail_ratio)
+     │
+     ▼
+SMOTE Oversampling (balance pass/fail)
+     │
+     ▼
+Train/Test Split
+     │
+     ▼
+Scaling (StandardScaler)
+     │
+     ▼
+Model Training
+ ┌───────────────┬───────────────┬─────────────┐
+ │LogisticRegress│RandomForest   │KNN          │
+ └───────────────┴───────────────┴─────────────┘
+     │
+     ▼
+Model Evaluation (Accuracy, F1-Score, Classification Report)
+     │
+     ▼
+Save Best Model (RandomForest_model.pkl)
+
+```
+
+
 ## Modeling
 
 Three machine learning models were trained:
