@@ -1,3 +1,103 @@
-### Student Performance Classification
+# Student Performance Prediction
 
-"A Machine Learning project that predicts student performance based on study habits, attendance, and personal factors. Includes data cleaning, preprocessing, model training, evaluation, and visual insights. Perfect practice for classification tasks using Python, Pandas, and Scikit-learn."
+This project predicts whether a student will **pass or fail** based on personal, academic, and social attributes. The dataset is sourced from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Student+Performance).
+
+---
+
+## Table of Contents
+
+- [Dataset](#dataset)
+- [Features](#features)
+- [Preprocessing](#preprocessing)
+- [Modeling](#modeling)
+- [Evaluation](#evaluation)
+- [Usage](#usage)
+- [Saved Model](#saved-model)
+- [Author](#author)
+
+---
+
+## Dataset
+
+The dataset contains student information including:  
+
+- Demographics: `age`, `sex`, `address`, etc.  
+- Academic: `studytime`, `failures`, `G1`, `G2`, `G3` (grades)  
+- Social & personal: `famsup`, `activities`, `internet`, `romantic`, etc.  
+
+The target variable `pass_fail` is **binary**:  
+- `1` → Pass (G3 >= 10)  
+- `0` → Fail (G3 < 10)  
+
+---
+
+## Features
+
+After preprocessing and feature selection, the following key features are used:
+
+- `age`, `Medu`, `Fedu`, `studytime`, `failures`, `higher`, `Dalc`, `Walc`  
+- Engineered features:  
+  - `total_alcohol` = Dalc + Walc  
+  - `study_fail_ratio` = studytime / (failures + 1)
+
+---
+
+## Preprocessing
+
+- Convert yes/no columns to binary (1/0).  
+- Fill missing numeric values with median and categorical values with mode.  
+- One-hot encode categorical variables.  
+- Standardize numeric features using `StandardScaler`.  
+- Exclude target (`pass_fail`) from feature engineering.
+
+---
+
+## Modeling
+
+Three machine learning models were trained:
+
+1. **Logistic Regression** (with `class_weight="balanced"`)  
+2. **Random Forest Classifier** (with `class_weight="balanced"`)  
+3. **K-Nearest Neighbors**  
+
+Imbalanced data was handled using **SMOTE**.
+
+---
+
+## Evaluation
+
+| Model                | Accuracy | F1-Score |
+|---------------------|----------|----------|
+| Logistic Regression  | 0.66     | 0.70     |
+| Random Forest        | 0.80     | 0.78     |
+| KNN                  | 0.80     | 0.77     |
+
+**Random Forest** was selected as the best-performing model.
+
+---
+
+## Usage
+
+```
+python
+import joblib
+
+# Load the trained model
+model = joblib.load("model/RandomForest_model.pkl")
+
+# Make predictions
+y_pred = model.predict(X_new)
+
+```
+
+## Saved Model
+
+The trained Random Forest model is saved as:
+
+```
+model/RandomForest_model.pkl
+```
+
+## Author
+
+Muhammad Talha
